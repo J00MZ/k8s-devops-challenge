@@ -16,7 +16,7 @@ And then start minikube
 - Ensure images built locally will be recognized by minikube  
   `eval $(minikube docker-env)`
 - Build images  
-  `cd imubit_devops_challenge`  
+  `cd k8s-devops-challenge`  
   `docker-compose build`
 - Run app  
   `docker-compose up -d`
