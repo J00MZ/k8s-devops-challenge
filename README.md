@@ -12,7 +12,7 @@ And then start minikube
 ## Running with docker-compose  
 
 - clone repo:  
-  `git clone git@gitlab.com:ytavin/imubit_devops_challenge.git`
+  `git clone git@github.com:J00MZ/k8s-devops-challenge.git`
 - Ensure images built locally will be recognized by minikube  
   `eval $(minikube docker-env)`
 - Build images  
