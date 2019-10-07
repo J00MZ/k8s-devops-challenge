@@ -1,17 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: fizz
+  name: crawler
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
-        app: fizz
+        app: crawler
     spec:
       containers:
-      - image: j00mz/fizz:latest
-        name: fizz
+      - image: j00mz/crawltricks:latest
+        name: crawltricks
+        args: ["-u", "https://www.ebay.com", "-d", "2"]
         resources:
           requests:
             memory: "64Mi"
