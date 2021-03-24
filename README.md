@@ -1,4 +1,4 @@
-# K8s DevOps Challenge
+# K8s DevOps Challenges
 
 ## Install Prerequisites
 
