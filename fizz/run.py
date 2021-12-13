@@ -1,59 +1,34 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import time
 import datetime
-import logging
-import logging.config
 import json
-import redis
-from redis import Redis
 from random import randint
 
 
 def main():
-    with open("/app/log_config.json", 'r') as log_conf_file:
-        config_dict = json.load(log_conf_file)
-
-    logging.config.dictConfig(config_dict)
-
-    # Log that the logger was configured
-    logger = logging.getLogger(__name__)
-    logger.info('intialized logger()!')
-
-    redis_db = get_redis()
-
-    for x in range(1000):
-        fb = randint(1,1024)
+    for x in range(100):
+        fb = randint(1,102)
         
         for fizzbuzz in range(1,fb):
-            s = datetime.datetime.now().isoformat()
-            if fizzbuzz % 3 == 0 and fizzbuzz % 5 == 0:
-                logger.warning("Oh No! fizzbuzz")
-                logger.info("Yep, it's fizzbuzz")
-                logger.debug('Debugging fizzbuzz...')
+            date_now = datetime.datetime.now().isoformat()
+            print(f'at {date_now} - fizzbuzz checking: {fizzbuzz}')
+            if fizzbuzz % 15 == 0:
+                print("fizzbuzz!")
                 continue
             elif fizzbuzz % 3 == 0:
-                logger.warning('no worries, just fizz')
-                logger.info("Yep, fizzly fizz")
-                logger.debug('Debugging fizz...')
+                print("fizz")
                 continue
             elif fizzbuzz % 5 == 0:
-                logger.warning('got a big buzz!')
-                logger.info("Yep, buzz")
-                logger.debug('Debugging buzz...')
+                print("buzz")
                 continue
-            print("at %s - fizzbuzz checking: %s" %(s, fizzbuzz))
-            redis_db.set(s,fizzbuzz)
+            else:
+                print(fizzbuzz)
         
         sleepytime = fb%5 #dont sleep too long on the job, max 5 seconds.
-        print "sleeping for %s seconds" %(sleepytime)
+        print(f'sleeping for {sleepytime} seconds between fizzbuzz checks.')
         time.sleep(sleepytime)
-
-def get_redis():
-    pool = redis.ConnectionPool(host='redis', port=6379, db=0)
-    r = redis.Redis(connection_pool=pool)
-    return r
 
 if __name__ == "__main__":
     main()
