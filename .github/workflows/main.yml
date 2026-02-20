@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push crawltricks
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: crawler/
           push: true
@@ -54,7 +54,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push fizz
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: fizz/
           push: true
